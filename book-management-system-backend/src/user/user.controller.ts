@@ -7,8 +7,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('register')
-  register(@Body() registerUserDto: RegisterUserDto) {
-    console.log(registerUserDto);
-    return 'done';
+  async register(@Body() registerUserDto: RegisterUserDto) {
+    return this.userService.register(registerUserDto);
   }
 }
