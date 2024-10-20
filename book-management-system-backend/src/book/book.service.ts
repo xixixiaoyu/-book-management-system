@@ -14,10 +14,14 @@ export class BookService {
   @Inject()
   dbService: DbService;
 
-  // 获取所有图书列表
-  async list() {
+  // 获取图书列表
+  async list(name: string) {
     const books: Book[] = await this.dbService.read();
-    return books;
+    return name
+      ? books.filter((book) => {
+          return book.name.includes(name);
+        })
+      : books;
   }
 
   // 根据 ID 查找图书
